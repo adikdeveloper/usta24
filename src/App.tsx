@@ -8,6 +8,7 @@ import Masters from './pages/Masters'
 import Clients from './pages/Clients'
 import Verification from './pages/Verification'
 import Categories from './pages/Categories'
+import Regions from './pages/Regions'
 
 export default function App() {
   const { session, isAdmin, loading, signOut } = useAuth()
@@ -56,6 +57,7 @@ export default function App() {
         <Route path="/verification" element={<Verification />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/clients" element={<Clients />} />
+        <Route path="/regions" element={<Regions />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AdminLayout>

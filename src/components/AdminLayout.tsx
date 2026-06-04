@@ -7,6 +7,7 @@ import {
   LogoutOutlined,
   SafetyCertificateOutlined,
   AppstoreOutlined,
+  EnvironmentOutlined,
 } from '@ant-design/icons'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
@@ -72,6 +73,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             },
             { key: 'categories', icon: <AppstoreOutlined />, label: 'Kasblar' },
             { key: 'clients', icon: <UserOutlined />, label: 'Mijozlar' },
+            { key: 'regions', icon: <EnvironmentOutlined />, label: 'Hududlar' },
           ]}
         />
       </Sider>
