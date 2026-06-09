@@ -43,12 +43,13 @@ begin
   --    SET NULL orqali tozalaydi.
   delete from public.orders where master_id = p_master_id;
 
-  -- 3) Storage fayl yozuvlari (passport, ish rasmlari, avatar).
-  --    Eslatma: bu storage.objects YOZUVlarini o'chiradi; ayrim backend'larda
-  --    jismoniy fayl keyinroq (asinxron) tozalanishi mumkin.
-  delete from storage.objects
-   where bucket_id in ('documents', 'works', 'avatars')
-     and (storage.foldername(name))[1] = p_master_id::text;
+  -- 3) Storage fayllari (passport, ish rasmlari, avatar):
+  --    Supabase storage.objects'ni SQL bilan o'chirishni BLOKLAYDI
+  --    ("Direct deletion from storage tables is not allowed. Use the Storage API").
+  --    Shuning uchun fayllar bu yerda o'chmaydi — Storage API orqali (admin app
+  --    yoki Edge Function) alohida tozalanadi. Quyidagi auth.users o'chirilishi
+  --    master_documents'dagi fayl YO'Llarini (DB yozuvi) baribir o'chiradi;
+  --    passport bucket'i PRIVATE bo'lgani uchun fayllar ommaga ochiq qolmaydi.
 
   -- 4) Auth foydalanuvchi → profiles + masters + master_* (hammasi cascade)
   delete from auth.users where id = p_master_id;
