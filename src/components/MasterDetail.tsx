@@ -15,11 +15,13 @@ import {
   message,
   Modal,
   Rate,
+  Divider,
 } from 'antd'
 import {
   MessageOutlined,
   CheckCircleOutlined,
   CloseCircleOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons'
 import { supabase } from '../lib/supabase'
 
@@ -421,6 +423,26 @@ export default function MasterDetail({
     }
   }
 
+  async function deleteMaster() {
+    if (!master) return
+    setActing(true)
+    try {
+      // admin_delete_master(uuid) — auth hisobi + barcha bog'liq ma'lumotni
+      // o'chiradi (supabase_admin_master_delete.sql da yaratilgan).
+      const { error } = await supabase.rpc('admin_delete_master', {
+        p_master_id: master.id,
+      })
+      if (error) throw error
+      message.success('Usta va barcha maʼlumoti oʻchirildi')
+      onChanged()
+      onClose()
+    } catch (e) {
+      message.error((e as Error).message ?? 'Xato')
+    } finally {
+      setActing(false)
+    }
+  }
+
   const completed = orders.filter((o) => o.status === 'completed')
   const name = master ? fullName(master.first_name, master.last_name) : '—'
 
@@ -517,6 +539,20 @@ export default function MasterDetail({
                       </Button>
                     </Popconfirm>
                   </div>
+
+                  <Divider style={{ margin: '4px 0' }} />
+                  <Popconfirm
+                    title="Ustani butunlay o'chirish"
+                    description="Ustaning hisobi va BARCHA ma'lumoti (profil, passport, buyurtmalar, sharhlar, balans) o'chiriladi. Bu amalni ortga qaytarib bo'lmaydi."
+                    okText="Ha, o'chirish"
+                    okButtonProps={{ danger: true }}
+                    cancelText="Bekor"
+                    onConfirm={deleteMaster}
+                  >
+                    <Button danger icon={<DeleteOutlined />} loading={acting} block>
+                      Ustani o'chirish
+                    </Button>
+                  </Popconfirm>
                 </Space>
               ),
             },

@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { Spin, Result, Button } from 'antd'
 import { useAuth } from './lib/auth'
 import Login from './pages/Login'
@@ -9,9 +9,15 @@ import Clients from './pages/Clients'
 import Verification from './pages/Verification'
 import Categories from './pages/Categories'
 import Regions from './pages/Regions'
+import Privacy from './pages/Privacy'
 
 export default function App() {
   const { session, isAdmin, loading, signOut } = useAuth()
+  const location = useLocation()
+
+  // Ommaviy maxfiylik siyosati — auth/loading tekshiruvidan OLDIN ko'rsatiladi
+  // (Google Play talabi: login yoki kutishsiz darhol ochilishi shart).
+  if (location.pathname === '/privacy') return <Privacy />
 
   if (loading) {
     return (
