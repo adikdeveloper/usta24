@@ -48,7 +48,7 @@ export default function Login() {
             label="Email"
             rules={[{ required: true, message: 'Email kiriting' }]}
           >
-            <Input size="large" placeholder="admin@usta24.uz" autoComplete="username" />
+            <Input size="large" placeholder="admin@usta24.org" autoComplete="username" />
           </Form.Item>
           <Form.Item
             name="password"

@@ -4,7 +4,7 @@ const { Title, Paragraph, Text } = Typography
 
 // Ommaviy (public) maxfiylik siyosati sahifasi — login talab qilmaydi.
 // Google Play "App content > Privacy policy" maydoniga shu URL kiritiladi:
-//   https://usta24.vercel.app/privacy   (keyinchalik https://usta24.app/privacy)
+//   https://usta24.org/privacy   (asosiy domen; usta24.vercel.app/privacy ham ishlaydi)
 // Matn ikkala ilovaning kodidagi haqiqiy ma'lumot yig'ilishiga mos.
 export default function Privacy() {
   return (
@@ -128,7 +128,7 @@ export default function Privacy() {
         <Paragraph>
           Hisobingizni va unga bog'liq barcha ma'lumotni o'chirishni so'rashingiz
           mumkin. Buning uchun{' '}
-          <Text strong>support@usta24.uz</Text> manziliga ro'yxatdan o'tgan
+          <Text strong>support@usta24.org</Text> manziliga ro'yxatdan o'tgan
           telefon raqamingiz bilan murojaat qiling. So'rovingiz qabul qilingach,
           hisobingiz va unga bog'liq ma'lumotlar (profil, joylashuv, passport
           hujjatlari, to'lov ma'lumotlari va buyurtma tarixi) o'chiriladi.
@@ -152,7 +152,7 @@ export default function Privacy() {
         <Title level={4}>10. Biz bilan bog'lanish</Title>
         <Paragraph>
           Maxfiylik bo'yicha savollaringiz bo'lsa, bizga murojaat qiling:{' '}
-          <Text strong>support@usta24.uz</Text>
+          <Text strong>support@usta24.org</Text>
         </Paragraph>
 
         <Divider />
