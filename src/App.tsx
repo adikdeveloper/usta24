@@ -10,6 +10,7 @@ import Verification from './pages/Verification'
 import Categories from './pages/Categories'
 import Regions from './pages/Regions'
 import Privacy from './pages/Privacy'
+import DeleteAccount from './pages/DeleteAccount'
 
 export default function App() {
   const { session, isAdmin, loading, signOut } = useAuth()
@@ -18,6 +19,7 @@ export default function App() {
   // Ommaviy maxfiylik siyosati — auth/loading tekshiruvidan OLDIN ko'rsatiladi
   // (Google Play talabi: login yoki kutishsiz darhol ochilishi shart).
   if (location.pathname === '/privacy') return <Privacy />
+  if (location.pathname === '/delete-account') return <DeleteAccount />
 
   if (loading) {
     return (
